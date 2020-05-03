@@ -9,7 +9,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin'); // 清空打包目录的插件
 // 判断命令行参数中是否有 --production 参数
-const isDebug = !process.argv.indexOf('--release');
+const isDebug = !~process.argv.indexOf('--release');
+
+console.log('isDebug ', isDebug)
 
 module.exports = {
     mode: isDebug ? 'development' : 'production',
