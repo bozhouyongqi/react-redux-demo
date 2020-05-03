@@ -2,7 +2,7 @@
  * @date: 2020-05-03 00:51:28
  * @last Modified time: 2020-05-03 00:51:28
  */
-import {REQUEST_POSTS, RECEIVE_POSTS, INVALIDATE_SUBREDDIT} from '../actions/actionType';
+import {REQUEST_POSTS, RECEIVE_POSTS, INVALIDATE_SUBREDDIT, REQUEST_ERROR} from '../actions/actionType';
 
 const requestPosts = subreddit => ({
     type: REQUEST_POSTS,
@@ -15,13 +15,22 @@ const receivePosts = (subreddit, data) => ({
     subreddit
 });
 
+const requestError = subreddit => ({
+    type: REQUEST_ERROR,
+    subreddit
+});
 
-const fetchPosts = subreddit => dispatch => {
+
+
+const fetchPosts = (subreddit, state) => dispatch => {
     dispatch(requestPosts(subreddit));
-
     return fetch('http://locahost:9000/api/reactjs')
         .then(res => res.json())
-        .then(json => dispatch(receivePosts(subreddit, json)));
+        .then(json => dispatch(receivePosts(subreddit, json)))
+        .catch(err => {
+            // dispatch 一个错误的action
+            dispatch(requestError(subreddit));
+        });
 };
 
 const shouldFetchPosts = (state, subreddit) => {

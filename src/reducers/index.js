@@ -5,12 +5,12 @@
 
 import {combineReducers} from 'redux';
 import selectedSubreddit from './selectedSubreddit';
-import postBySubreddit from './postBySubreddit';
+import postsBySubreddit from './postBySubreddit';
 
 const finalReducer = combineReducers(
     {
         selectedSubreddit,
-        postBySubreddit
+        postsBySubreddit
     }
 );
 

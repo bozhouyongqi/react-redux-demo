@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack --release"
+    "start-client": "webpack-dev-server",
+    "build": "webpack --release",
+    "start-mock":"nodemon mock.js"
   },
   "dependencies": {
     "express": "^4.17.1",
@@ -13,6 +14,7 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {

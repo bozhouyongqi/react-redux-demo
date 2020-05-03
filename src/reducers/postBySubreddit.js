@@ -3,7 +3,7 @@
  * @last Modified time: 2020-05-03 00:29:45
  */
 
-import {REQUEST_POSTS, RECEIVE_POSTS, INVALIDATE_SUBREDDIT} from '../actions/actionType';
+import {REQUEST_POSTS, RECEIVE_POSTS, INVALIDATE_SUBREDDIT, REQUEST_ERROR} from '../actions/actionType';
 
 const posts = (state = {
     isFetching: false,
@@ -33,6 +33,11 @@ const posts = (state = {
                 items: action.data.posts,
                 lastUpdated: action.data.receivedAt
             };
+        case REQUEST_ERROR:
+            return {
+                ...state,
+                isFetching: false
+            }
         default:
             return state;
     }
@@ -45,6 +50,7 @@ const postsBySubreddit = (state = {}, action) => {
         case REQUEST_POSTS:
         case RECEIVE_POSTS:
         case INVALIDATE_SUBREDDIT:
+        case REQUEST_ERROR:
             return {
                 ...state,
                 [action.subreddit]: posts(state[action.subreddit], action)
