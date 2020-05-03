@@ -10,6 +10,7 @@ const port = 9000;
 
 app.use('/api', (req, res) => {
 
+    console.log('receive  ', req.originalUrl);
 
     return res.json(
         {
@@ -17,7 +18,8 @@ app.use('/api', (req, res) => {
                 '1111111',
                 '22222',
                 '3333333'
-            ]
+            ],
+            receivedAt: new Date().getTime()
         }
     );
 });
