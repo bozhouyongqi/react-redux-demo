@@ -12,16 +12,18 @@ app.use('/api', (req, res) => {
 
     console.log('receive  ', req.originalUrl);
 
-    return res.json(
-        {
-            posts: [
-                '1111111',
-                '22222',
-                '3333333'
-            ],
-            receivedAt: new Date().getTime()
-        }
-    );
+    setTimeout(() => {
+        return res.json(
+            {
+                posts: [
+                    '1111111',
+                    '22222',
+                    '3333333'
+                ],
+                receivedAt: new Date().getTime()
+            }
+        );
+    }, 1000);
 });
 
 

@@ -24,7 +24,7 @@ const requestError = subreddit => ({
 
 const fetchPosts = (subreddit, state) => dispatch => {
     dispatch(requestPosts(subreddit));
-    return fetch('http://locahost:9000/api/reactjs')
+    return fetch('/api/reactjs')
         .then(res => res.json())
         .then(json => dispatch(receivePosts(subreddit, json)))
         .catch(err => {
