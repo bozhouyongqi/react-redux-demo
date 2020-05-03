@@ -74,7 +74,10 @@ module.exports = {
         contentBase: path.join(__dirname, 'dist'),
         // compress: true,
         port: 8000,
-        open: true
+        open: true,
+        proxy: {
+            '/api': 'http://localhost:9000'
+        }
     },
     devtool: 'source-map'
 };
