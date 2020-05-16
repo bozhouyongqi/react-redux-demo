@@ -1,15 +1,10 @@
-/** * @author: wangyongqi@baidu.com
- * @date: 2020-05-03 01:13:04
- * @last Modified time: 2020-05-03 01:13:04
- */
 
 const express = require('express');
 
-const app = express();
-const port = 9000;
+const router = express.Router();
+const githubRouter = require('./github');
 
-app.use('/api', (req, res) => {
-
+router.get('/', function (req, res, next) {
     console.log('receive  ', req.originalUrl);
 
     setTimeout(() => {
@@ -27,8 +22,8 @@ app.use('/api', (req, res) => {
 });
 
 
-app.listen(port, () => {
-    console.log('mock server has started!, listen port: ', port);
+router.use('/github', githubRouter);
 
-});
+// 下面可以再继续添加处理api路由下的其他路由
 
+module.exports = router;
